@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapa con Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 600px;"></div>
+  <script>
+    var map = L.map('map').setView([9.7489, -83.7534], 10); // Coordenadas de Costa Rica
+
+    L.tileLayer('https://kindredjester6.github.io/pr3Gis/tiles/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+  </script>
+</body>
+</html>
