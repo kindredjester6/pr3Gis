@@ -2,18 +2,27 @@
 <html>
 <head>
   <title>Mapa con Leaflet</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css" rel="stylesheet" type="text/css" />
+  <script src="https://unpkg.com/leaflet@1.0.0/dist/leaflet-src.js"></script>
+  <script src="https://unpkg.com/sql.js@0.3.2/js/sql.js"></script>
+  <script src="./Leaflet.TileLayer.MBTiles/Leaflet.TileLayer.MBTiles.js"></script>
 </head>
 <body>
   <div id="map" style="width: 100%; height: 600px;"></div>
   <script>
-    var map = L.map('map').setView([9.7489, -83.7534], 10); // Coordenadas de Costa Rica
+    var map = new L.Map('map').setView([9.7489, -83.7534], 10); // Coordenadas de Costa Rica
 
-    L.tileLayer('https://kindredjester6.github.io/pr3Gis/tiles/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    var mb = L.tileLayer.mbTiles('./mosaic.mbtiles', {
+		minZoom: 0,
+		maxZoom: 6
+	}).addTo(map);
+
+    mb.on('databaseloaded', function(ev) {
+		console.info('MBTiles DB loaded', ev);
+	});
+	mb.on('databaseerror', function(ev) {
+		console.info('MBTiles DB error', ev);
+	});
   </script>
 </body>
 </html>
