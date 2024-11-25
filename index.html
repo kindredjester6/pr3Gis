@@ -6,15 +6,24 @@
   <script src="https://unpkg.com/leaflet@1.0.0/dist/leaflet-src.js"></script>
   <script src="https://unpkg.com/sql.js@0.3.2/js/sql.js"></script>
   <script src="./Leaflet.TileLayer.MBTiles/Leaflet.TileLayer.MBTiles.js"></script>
+
+  <style>
+    #map{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+  </style>
 </head>
 <body>
-  <div id="map" style="width: 100%; height: 600px;"></div>
+  <div id="map" style="width: 700px; height: 360px;"></div>
   <script>
-    var map = new L.Map('map').setView([9.7489, -83.7534], 10); // Coordenadas de Costa Rica
+    var map = new L.Map('map').setView([10.088654, -84.472051], 8); // Coordenadas de Costa Rica
 
-    var mb = L.tileLayer.mbTiles('./mosaic.mbtiles', {
-		minZoom: 0,
-		maxZoom: 6
+    var mb = L.tileLayer.mbTiles('./mosaicMap.mbtiles', {
+		minZoom: 8,
+		maxZoom: 16
 	}).addTo(map);
 
     mb.on('databaseloaded', function(ev) {
